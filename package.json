@@ -1,0 +1,15 @@
+{
+  "name": "tsa",
+  "version": "1.0.0",
+  "description": "a systemo to test some common web attacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Nick Ronconi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
