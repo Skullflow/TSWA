@@ -1,7 +1,19 @@
+let SQLConnection;
+
+const setSQLConnection = (sqlc) => {
+  SQLConnection = sqlc;
+}
+
+const getSQLConnection = () => {
+  return SQLConnection;
+}
+
 module.exports = {
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'tswa_db',
-  port: 3000
+  database: 'sys',
+  port: 3000,
+  setSQLConnection,
+  getSQLConnection
 };

@@ -4,7 +4,6 @@
 const express  = require('express')
 const mysql = require('mysql')
 const config = require('./config')
-const routes = require('./routes')
 /*
 * Variables
 */
@@ -27,7 +26,12 @@ connection.connect((err) => {
     console.log('Error connecting: ' + err.stack);
     return
   } else {
+    //assign db instance
+    config.setSQLConnection(connection);
+
+    const routes = require('./routes')
     //Initialize server routes
+    console.log("then")
     routes.init(app);
     //Listener on port
     app.listen(config.port, () => {
