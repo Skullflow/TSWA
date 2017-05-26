@@ -1,18 +1,23 @@
-var express = require('express');
-var router = express.Router();
-var config = require('../config');
-var sql = config.getSQLConnection();
+var express = require('express')
+var router = express.Router()
+var config = require('../config')
+var sql = config.getSQLConnection()
+var parser = require('../libs/parser')
 
 router.get('/', (req, res) => {
-  console.log(req.query.id);
-  sql.query("SELECT * FROM sys.users WHERE id='" + req.query.id + "';", (error, results, fields) => {
-    if(error) throw error;
-    res.send(results);
+  sql.query("SELECT * FROM tswa.users WHERE id='" + req.query.id + "';", (error, users, fields) => {
+    if(error) throw error
+    res.json({users: users})
   })
-});
+})
 
 router.post('/', (req, res) => {
-  res.send("POST USER");
-});
+  let values = parser.createValuesString(req.body)
+  sql.query("INSERT INTO tswa.users (firstname, lastname, email, password) VALUES (" + values + ")",
+  (error, users, fields) => {
+    if(error) throw error
+    res.json({msg: "The user has been inserted"})
+  })
+})
 
-module.exports = router;
+module.exports = router

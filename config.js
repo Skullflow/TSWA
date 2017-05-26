@@ -10,9 +10,9 @@ const getSQLConnection = () => {
 
 module.exports = {
   host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'sys',
+  user: 'tswa',
+  password: 'tswa',
+  database: 'tswa',
   port: 3000,
   setSQLConnection,
   getSQLConnection

@@ -4,10 +4,20 @@
 const express  = require('express')
 const mysql = require('mysql')
 const config = require('./config')
+const bp = require('body-parser')
 /*
 * Variables
 */
 const app = express()
+
+/*
+* Config Server
+*/
+// parse application/x-www-form-urlencoded
+app.use(bp.urlencoded({ extended: false }))
+// parse application/json
+app.use(bp.json())
+
 const connection_data = {
   host: config.host,
   user: config.user,
@@ -31,11 +41,10 @@ connection.connect((err) => {
 
     const routes = require('./routes')
     //Initialize server routes
-    console.log("then")
     routes.init(app);
     //Listener on port
     app.listen(config.port, () => {
       console.log("TSA listening on 3000...")
     })
   }
-});
+})
